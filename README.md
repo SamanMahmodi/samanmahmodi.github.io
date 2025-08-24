@@ -1,1 +1,0 @@
-# samanmahmodi.github.io
