@@ -101,13 +101,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     // comment
     try {
+      const postId = document.querySelector("[data-comments-for]").getAttribute("data-comments-for");
       document.querySelector("[data-comments]").outerHTML = `<div data-comments-container class="max-w-xl mx-auto has-[iframe]:[&>div]:!hidden has-[iframe]:[&>iframe]:!visible"><div class="animate-pulse flex flex-row items-center justify-center">در حال بارگذاری نظرات..</div></div>`;
       const commentContainer = document.querySelector("[data-comments-container]");
       const f = "ifr" + "ame";
-      // commentContainer.insertAdjacentHTML("beforeend", `<${f} class="w-full block invisible transition-[height] duration-500 border-none outline-none bg-none" src="/comments/comments.html"></${f}>`);
-      commentContainer.insertAdjacentHTML("beforeend", `<${f} class="w-full block invisible transition-[height] duration-500 border-none outline-none bg-none" src="/comments/?blogid=${blogId}&postid=${document.querySelector("[data-comments-for]").getAttribute("data-comments-for")}"></${f}>`);
-      console.log(`/comments/?blogid=${blogId}&postid=${document.querySelector("[data-comments-for]").getAttribute("data-comments-for")}`);
-
+      commentContainer.insertAdjacentHTML("beforeend", `<${f} class="w-full block invisible transition-[height] duration-500 border-none outline-none bg-none" src="/comments/?blogid=${blogId}&postid=${postId}"></${f}>`);
       const theme = document.querySelector("style[data-style]");
       const font = document.querySelector("link[data-font]");
       const style = `
