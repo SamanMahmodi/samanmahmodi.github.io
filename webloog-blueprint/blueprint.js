@@ -101,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     // comment
     try {
-      const comment = e.querySelector("[data-comment]");
+      const comment = document.querySelector("[data-comment]");
       if (comment) {
         document.querySelector(
           "[data-comments]"
