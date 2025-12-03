@@ -125,9 +125,6 @@ try {
     padding: 20px;
     text-align: center;
   }
-  .webloog-comments:has(.webloog-comment) .webloog-loading {
-    display: none;
-  }
   @keyframes pulse {
     0% {
       opacity: 1;
@@ -147,6 +144,15 @@ try {
     align-items: start;
     gap: 10px;
     position: relative;
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeInSmooth 0.6s ease-out forwards;
+  }
+  @keyframes fadeInSmooth {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    }
   }
   .webloog-comment:last-of-type {
     border: none;
@@ -227,7 +233,7 @@ try {
   display: flex;
   flex-direction: row;
   gap: 10px;
-  padding: 20px;
+  padding: 20px 10px 20px 20px;
   border-bottom: 1px solid var(--border);
   animation: pulse 2s infinite ease-in-out;
 }
@@ -254,7 +260,7 @@ try {
 }
 .webloog-skeleton-line:last-of-type {
   width: 80%;
-  height:20px;
+  height:15px;
 }
 .webloog-skeleton-line.short {
   width: 40%;
