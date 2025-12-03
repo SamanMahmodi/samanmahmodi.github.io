@@ -51,7 +51,7 @@ const _dom = `
 </div>
 `;
 script.insertAdjacentHTML("beforebegin", _style + _dom);
-const webloogComments = document.querySelector("webloog-comments");
+const webloogComments = document.querySelector(".webloog-comments");
 async function getComment(postId, page = 1) {
   try {
     const data = await fetch(`/comments/?blogid=${blogId}&postid=${postId}&p=${page}`);
