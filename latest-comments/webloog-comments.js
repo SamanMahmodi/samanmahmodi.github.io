@@ -230,7 +230,7 @@ async function getComment(postId, page = 1) {
     if (lastPage) {
       await getComment(postId, lastPage.getAttribute("href").split("&=p")[1]);
     } else {
-      const lastComment = dom.querySelector(".box:last-of-type");
+      const lastComment = dom.querySelector(".box");
       if (lastComment) {
         foundComment = true;
         const author = lastComment.querySelector(".author");
