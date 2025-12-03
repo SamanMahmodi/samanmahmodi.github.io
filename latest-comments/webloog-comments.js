@@ -24,7 +24,6 @@ const _style = `
 .webloog-comments:has(.webloog-comment) .webloog-loading {
   display: none;
 }
-
 @keyframes pulse {
   0% {
     opacity: 1;
@@ -59,34 +58,35 @@ async function getComment(postId, page = 1) {
     const dom = new DOMParser().parseFromString(text, "text/html");
     const lastPage = dom.querySelector(`#navbar a[title="صفحه آخر"]`);
     if (lastPage) {
-      getComment(postId, lastPage.getAttribute("href").split("&=p")[1]);
+      await getComment(postId, lastPage.getAttribute("href").split("&=p")[1]);
     } else {
       const lastComment = dom.querySelector(".box");
-      if (lastComment) {
+      if (lastComment && comments > 0) {
         const author = lastComment.querySelector(".author");
         const commentTemplate = `
         <div class="webloog-comment">
             <div class="webloog-heading">
                 <div class="webloog-avatar">
-                        ${author.textContent ? author.textContent[0] : ""}
+                        ${author?.textContent ? author.textContent[0] : ""}
                 </div>
                 <div class="webloog-details">
                     <div class="webloog-info">
-                        ${author.innerHTML}
-                         در پست 
-                        <a href="/post/${postId}">${dom.querySelector("#header").textContent}</a>
+                        ${author?.innerHTML || ""}
+                        در پست 
+                        <a href="/post/${postId}">${dom.querySelector("#header")?.textContent || ""}</a>
                     </div>
                     <div class="webloog-date">
-                        ${lastComment.querySelector(".date").textContent}
+                        ${lastComment.querySelector(".date")?.textContent || ""}
                     </div>
                 </div>
             </div>
             <div class="webloog-content">
-                ${lastComment.querySelector(".body").innerHTML}
+                ${lastComment.querySelector(".body")?.innerHTML || ""}
             </div>
         </div>
         `;
         webloogComments.insertAdjacentHTML("beforeend", commentTemplate);
+        webloogComments.querySelector(".webloog-loading")?.remove();
         comments -= 1;
       }
     }
@@ -94,7 +94,6 @@ async function getComment(postId, page = 1) {
     console.log(t);
   }
 }
-
 (async () => {
   for (let index = 0; index < BlogComments.length && comments > 0; index += 2) {
     await getComment(BlogComments[index]);
