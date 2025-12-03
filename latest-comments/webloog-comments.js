@@ -74,10 +74,24 @@ const _style = `
   --text: #12352c;
   --muted: #5f8b7f;
 }
+[data-theme="pastel"] {
+  --body: #fdfcff;
+  --border: #e7e4f2;
+  --link: #6c7bff;
+  --text: #2e2a34;
+  --muted: #8a8597;
+}
+[data-theme="book"] {
+  --body: #faf6e9;
+  --border: #e4d8b4;
+  --link: #8b5e2e;
+  --text: #3b2f1b;
+  --muted: #7d6a4c;
+}
 
   .webloog-wrap * {
     box-sizing: border-box;
-    font-size: 11pt!important;
+    font-size: 10pt!important;
     margin:0;
     padding:0;
   }
@@ -90,7 +104,7 @@ const _style = `
     width: 100%;
     max-width: 576px;
     margin: auto;
-    font-size: 11pt!important;
+    font-size: 10pt!important;
     color: var(--text);
     text-align:right;
   }
@@ -157,7 +171,7 @@ const _style = `
     color: white;
     text-shadow: 1px 1px 1px #000;
     z-index: 1;
-    font-size: 13pt!important;
+    font-size: 12pt!important;
   }
   .webloog-line {
     height: 100%;
@@ -241,7 +255,8 @@ async function getComment(postId, page = 1) {
     if (lastPage) {
       await getComment(postId, lastPage.getAttribute("href").split("&=p")[1]);
     } else {
-      const lastComment = dom.querySelector(".box");
+      const boxes = dom.querySelectorAll(".box");
+      const lastComment = boxes.length ? boxes[boxes.length - 1] : null;
       if (lastComment) {
         foundComment = true;
         const author = lastComment.querySelector(".author");
@@ -257,9 +272,7 @@ async function getComment(postId, page = 1) {
                   ${author?.innerHTML || ""}
                 </b>
                 در مطلب
-                <b>
-                  <a class="webloog-post" href="/post/${postId}">${dom.querySelector("#header")?.textContent || ""}</a>
-                </b>
+                <a class="webloog-post" href="/post/${postId}">${dom.querySelector("#header")?.textContent || ""}</a>
               </div>
               <span class="webloog-date">
                 ${lastComment.querySelector(".date")?.textContent || ""}
@@ -281,7 +294,25 @@ async function getComment(postId, page = 1) {
 }
 
 function randomColor() {
-  const colors = ["#ff6b6b", "#feca57", "#48dbfb", "#1dd1a1", "#5f27cd", "#ee5253", "#ff9ff3", "#54a0ff", "#00d2d3", "#f368e0", "#c8d6e5", "#576574", "#01a3a4", "#ff9f43", "#341f97"];
+  // const colors = ["#ff6b6b", "#feca57", "#48dbfb", "#1dd1a1", "#5f27cd", "#ee5253", "#ff9ff3", "#54a0ff", "#00d2d3", "#f368e0", "#c8d6e5", "#576574", "#01a3a4", "#ff9f43", "#341f97"];
+  const colors = [
+    "#ffb3b3", // نرم‌شده‌ی ff6b6b
+    "#ffe4a8", // نرم‌شده‌ی feca57
+    "#aee9ff", // نرم‌شده‌ی 48dbfb
+    "#9ff3d3", // نرم‌شده‌ی 1dd1a1
+    "#b8a6ff", // نرم‌شده‌ی 5f27cd
+    "#ff9ca1", // نرم‌شده‌ی ee5253
+    "#ffc9ff", // نرم‌شده‌ی ff9ff3
+    "#a7caff", // نرم‌شده‌ی 54a0ff
+    "#8ff1f1", // نرم‌شده‌ی 00d2d3
+    "#ffb0f2", // نرم‌شده‌ی f368e0
+    "#e6eef5", // نرم‌شده‌ی c8d6e5
+    "#9da5ae", // نرم‌شده‌ی 576574
+    "#7ed6d6", // نرم‌شده‌ی 01a3a4
+    "#ffd29d", // نرم‌شده‌ی ff9f43
+    "#a89be6", // نرم‌شده‌ی 341f97
+  ];
+
   return colors[Math.floor(Math.random() * colors.length)];
 }
 
