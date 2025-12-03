@@ -94,6 +94,9 @@ async function getComment(postId, page = 1) {
     console.log(t);
   }
 }
-for (let index = 0; index < BlogComments.length && comments > 0; index += 2) {
-  getComment(BlogComments[index]);
-}
+
+(async () => {
+  for (let index = 0; index < BlogComments.length && comments > 0; index += 2) {
+    await getComment(BlogComments[index]);
+  }
+})();
