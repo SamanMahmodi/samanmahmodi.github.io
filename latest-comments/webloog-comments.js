@@ -69,6 +69,7 @@ const _style = `
   }
   .webloog-wrap * {
     box-sizing: border-box;
+    font-size: 11pt!important;
   }
   .webloog-wrap {
     border: 1px solid var(--border);
@@ -80,7 +81,7 @@ const _style = `
     width: 100%;
     max-width: 576px;
     margin: auto;
-    font-size: 11pt;
+    font-size: 11pt!important;
     color: var(--text);
   }
   .webloog-heading {
@@ -145,7 +146,7 @@ const _style = `
     color: white;
     text-shadow: 1px 1px 1px #000;
     z-index: 1;
-    font-size: 13pt;
+    font-size: 13pt!important;
   }
   .webloog-line {
     height: 100%;
@@ -162,7 +163,7 @@ const _style = `
   }
   .webloog-date {
     margin-bottom: 10px;
-    font-size: 9pt;
+    font-size: 9pt!important;
     color: var(--muted);
   }
   .webloog-info {
@@ -194,15 +195,15 @@ const _style = `
     padding-left: 5px;
   }
   .webloog-author a {
-    color: var(--link);
+    color: var(--link)!important;
   }
 </style>
 `;
 const _dom = `
-<div class="webloog-wrap" data-theme="light">
+<div class="webloog-wrap" data-theme="${webloogTheme}">
   <div class="webloog-heading">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.0867 21.3877L13.6288 20.4718C14.0492 19.7614 14.2595 19.4062 14.5972 19.2098C14.9349 19.0134 15.36 19.0061 16.2104 18.9915C17.4658 18.9698 18.2531 18.8929 18.9134 18.6194C20.1386 18.1119 21.1119 17.1386 21.6194 15.9134C22 14.9946 22 13.8297 22 11.5V10.5C22 10.1303 22 9.78153 21.9989 9.45187C21.9976 9.02454 21.4751 8.78307 21.0971 8.9825C20.4709 9.31294 19.7573 9.5 19 9.5C16.5147 9.5 14.5 7.48528 14.5 5C14.5 4.24271 14.6871 3.52911 15.0175 2.90288C15.2169 2.52494 14.9755 2.00244 14.5481 2.00106C14.2185 2 13.8697 2 13.5 2H10.5C7.22657 2 5.58985 2 4.38751 2.7368C3.71473 3.14908 3.14908 3.71473 2.7368 4.38751C2 5.58985 2 7.22657 2 10.5V11.5C2 13.8297 2 14.9946 2.3806 15.9134C2.88807 17.1386 3.86144 18.1119 5.08658 18.6194C5.74689 18.8929 6.53422 18.9698 7.78958 18.9915C8.63992 19.0061 9.06509 19.0134 9.40279 19.2098C9.74049 19.4063 9.95073 19.7614 10.3712 20.4718L10.9133 21.3877C11.3965 22.204 12.6035 22.204 13.0867 21.3877Z" fill="currentColor"/><circle cx="19" cy="5" r="3" fill="var(--link)"/></svg>
-    <h6>آخرین نظرات کاربران</h6>
+    <div>آخرین نظرات کاربران</div>
   </div>
   <div class="webloog-comments">
     <div class="webloog-loading">درحال بارگذاری نظرات..</div>
@@ -296,8 +297,10 @@ function randomComplexPattern(layers = 6) {
   for (let i = 0; i < layers; i++) {
     gradients.push(randomGradientLayer());
   }
+  console.log(gradients.join(","));
   return gradients.join(",");
 }
+randomComplexPattern();
 (async () => {
   for (let index = 0; index < BlogComments.length && comments > 0; index += 2) {
     await getComment(BlogComments[index]);
