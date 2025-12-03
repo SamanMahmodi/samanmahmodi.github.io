@@ -197,6 +197,10 @@ const _style = `
   .webloog-author a {
     color: var(--link)!important;
   }
+  .webloog-notFound {
+    padding:20px;
+    text-align:center;
+  }
 </style>
 `;
 const _dom = `
@@ -216,6 +220,7 @@ const _dom = `
 `;
 script.insertAdjacentHTML("beforebegin", _style + _dom);
 const webloogComments = document.querySelector(".webloog-comments");
+let foundComment = false;
 async function getComment(postId, page = 1) {
   try {
     const data = await fetch(`/comments/?blogid=${webloogBlogId}&postid=${postId}&p=${page}`);
@@ -225,10 +230,10 @@ async function getComment(postId, page = 1) {
     if (lastPage) {
       await getComment(postId, lastPage.getAttribute("href").split("&=p")[1]);
     } else {
-      const lastComment = dom.querySelector(".box:last-of-type");
+      const lastComment = dom.querySelectorAll(".box:last-of-type");
       if (lastComment) {
+        foundComment = true;
         const author = lastComment.querySelector(".author");
-
         const commentTemplate = `
          <div class="webloog-comment">
             <div class="webloog-line"></div>
@@ -304,5 +309,12 @@ randomComplexPattern();
 (async () => {
   for (let index = 0; index < BlogComments.length && comments > 0; index += 2) {
     await getComment(BlogComments[index]);
+  }
+  if (!foundComment) {
+    webloogComments.innerHTML = `
+      <div class="webloog-notFound">
+        هیچ نظری یافت نشد
+      </div>
+    `;
   }
 })();
