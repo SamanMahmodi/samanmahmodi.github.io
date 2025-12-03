@@ -232,7 +232,7 @@ async function getComment(postId, page = 1) {
         const commentTemplate = `
          <div class="webloog-comment">
             <div class="webloog-line"></div>
-            <div class="webloog-avatar" style="background:${randomComplexPattern()}">
+            <div class="webloog-avatar" style="background:">
                ${author?.textContent ? author.textContent[0] : ""}
             </div>
             <div class="webloog-head">
