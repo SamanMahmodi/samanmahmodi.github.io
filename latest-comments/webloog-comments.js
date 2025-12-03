@@ -3,8 +3,8 @@ let comments = script.getAttribute("data-comments") ? Number(script.getAttribute
 const blogId = script.getAttribute("data-blog");
 const _style = `
 <style>
-.webloog-comments * {box-sizing:border-box;}
-.webloog-comments {
+.webloog-wrap * {box-sizing:border-box;}
+.webloog-wrap {
     display:flex;
     flex-direction:column;
     gap:10px;
@@ -21,7 +21,7 @@ const _style = `
 .webloog-loading {
     animation:  pulse 2s infinite
 }
-.comments-webloog:has(.webloog-comment) .webloog-loading {
+.webloog-comments:has(.webloog-comment) .webloog-loading {
   display: none;
 }
 
@@ -39,7 +39,7 @@ const _style = `
 </style>
 `;
 const _dom = `
-<div class="webloog-comments">
+<div class="webloog-wrap">
     <h6 class="webloog-heading">
         جدیدترین نظرات کاربران
     </h6>
@@ -51,7 +51,7 @@ const _dom = `
 </div>
 `;
 script.insertAdjacentHTML("beforebegin", _style + _dom);
-const commentsWrap = document.querySelector("webloog-comments");
+const webloogComments = document.querySelector("webloog-comments");
 async function getComment(postId, page = 1) {
   try {
     const data = await fetch(`/comments/?blogid=${blogId}&postid=${postId}&p=${page}`);
@@ -86,7 +86,7 @@ async function getComment(postId, page = 1) {
             </div>
         </div>
         `;
-        commentsWrap.insertAdjacentHTML("beforeend", commentTemplate);
+        webloogComments.insertAdjacentHTML("beforeend", commentTemplate);
         comments -= 1;
       }
     }
