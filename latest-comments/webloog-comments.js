@@ -18,55 +18,63 @@ const _style = `
     --text: #f5f5f5;
     --muted: #aaaaaa;
   }
-  [data-theme="sunset"] {
-    --body: #fff2e6;
-    --border: #ff8c42;
-    --link: #ff3e00;
-    --text: #663300;
-    --muted: #cc6600;
-  }
-  [data-theme="ocean"] {
-    --body: #e0f7fa;
-    --border: #00acc1;
-    --link: #00838f;
-    --text: #004d40;
-    --muted: #006064;
-  }
-  [data-theme="forest"] {
-    --body: #e8f5e9;
-    --border: #66bb6a;
-    --link: #2e7d32;
-    --text: #1b5e20;
-    --muted: #4caf50;
-  }
-  [data-theme="candy"] {
-    --body: #fff0f5;
-    --border: #ff69b4;
-    --link: #ff1493;
-    --text: #660033;
-    --muted: #cc3366;
-  }
-  [data-theme="pastel"] {
-    --body: #fff7f8;
-    --border: #ffdede;
-    --link: #ffb6b9;
-    --text: #333333;
-    --muted: #888888;
-  }
-  [data-theme="golden"] {
-    --body: #fff8e1;
-    --border: #ffc107;
-    --link: #ff6f00;
-    --text: #5d4037;
-    --muted: #8d6e63;
-  }
-  [data-theme="cherry"] {
-    --body: #fff0f5;
-    --border: #ffb7c5;
-    --link: #ff69b4;
-    --text: #660033;
-    --muted: #cc6699;
-  }
+[data-theme="sunset"] {
+  --body: #fff7f3;
+  --border: #ffd7c8;
+  --link: #ff7b5c;
+  --text: #3a2b27;
+  --muted: #7a5a54;
+}
+[data-theme="ocean"] {
+  --body: #f4fbff;
+  --border: #b2d9e6;
+  --link: #309ad6;
+  --text: #0e2a3b;
+  --muted: #5f7d8a;
+}
+[data-theme="emerald"] {
+  --body: #f2fff9;
+  --border: #bde7d3;
+  --link: #2fad7f;
+  --text: #12362a;
+  --muted: #4f7d6c;
+}
+[data-theme="lavender"] {
+  --body: #fbf7ff;
+  --border: #e0cafe;
+  --link: #9c6bff;
+  --text: #2f2144;
+  --muted: #7f6a9c;
+}
+[data-theme="cyber"] {
+  --body: #0e0f17;
+  --border: #24243a;
+  --link: #00ffe5;
+  --text: #d7fdf8;
+  --muted: #8fbab3;
+}
+[data-theme="rosegold"] {
+  --body: #fff8f9;
+  --border: #ffdce2;
+  --link: #d66a82;
+  --text: #3b2328;
+  --muted: #7e5a61;
+}
+[data-theme="spacegray"] {
+  --body: #1f1f22;
+  --border: #3a3a3d;
+  --link: #6d8bff;
+  --text: #e9e9ea;
+  --muted: #9a9aa1;
+}
+[data-theme="mint"] {
+  --body: #f4fffb;
+  --border: #c8efe2;
+  --link: #4dc9a6;
+  --text: #12352c;
+  --muted: #5f8b7f;
+}
+
   .webloog-wrap * {
     box-sizing: border-box;
     font-size: 11pt!important;
