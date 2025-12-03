@@ -1,7 +1,7 @@
 const script = document.currentScript;
 let comments = script.getAttribute("data-comments") ? Number(script.getAttribute("data-comments")) : 5;
 const webloogBlogId = script.getAttribute("data-blog");
-const webloogTheme = script.getAttribute("data-theme") && "light";
+const webloogTheme = script.getAttribute("data-theme") || "light";
 const _style = `
 <style>
   [data-theme="light"] {
@@ -232,8 +232,8 @@ async function getComment(postId, page = 1) {
         const commentTemplate = `
          <div class="webloog-comment">
             <div class="webloog-line"></div>
-            <div class="webloog-avatar" style="background:">
-               ${author?.textContent ? author.textContent[0] : ""}
+            <div class="webloog-avatar" style="background:${randomComplexPattern()}">
+               ${author?.textContent ? author.textContent?.trim()?.[0] : ""}
             </div>
             <div class="webloog-head">
               <div class="webloog-info">
