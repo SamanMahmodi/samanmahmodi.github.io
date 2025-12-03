@@ -70,6 +70,8 @@ const _style = `
   .webloog-wrap * {
     box-sizing: border-box;
     font-size: 11pt!important;
+    margin:0;
+    padding:0;
   }
   .webloog-wrap {
     border: 1px solid var(--border);
