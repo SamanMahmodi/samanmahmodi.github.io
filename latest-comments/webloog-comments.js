@@ -103,7 +103,7 @@ const _style = `
     overflow: hidden;
     width: 100%;
     max-width: 576px;
-    margin: auto;
+    margin: 20px auto;
     font-size: 10pt!important;
     color: var(--text);
     text-align:right;
