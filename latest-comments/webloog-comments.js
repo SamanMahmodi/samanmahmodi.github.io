@@ -226,6 +226,42 @@ const _style = `
     padding:20px;
     text-align:center;
   }
+    .webloog-skeleton {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  padding: 20px;
+  border-bottom: 1px solid var(--border);
+  animation: pulse 1.8s infinite ease-in-out;
+}
+
+.webloog-skeleton-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--border) 60%, transparent);
+  flex-shrink: 0;
+}
+
+.webloog-skeleton-lines {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 3px;
+}
+
+.webloog-skeleton-line {
+  height: 10px;
+  width: 80%;
+  background: color-mix(in srgb, var(--border) 60%, transparent);
+  border-radius: 6px;
+}
+
+.webloog-skeleton-line.short {
+  width: 40%;
+}
+
 </style>
 `;
 const _dom = `
@@ -245,6 +281,29 @@ const _dom = `
 `;
 script.insertAdjacentHTML("beforebegin", _style + _dom);
 const webloogComments = document.querySelector(".webloog-comments");
+function createSkeletons(count) {
+  let out = "";
+  for (let i = 0; i < count; i++) {
+    out += `
+      <div class="webloog-skeleton">
+        <div class="webloog-skeleton-avatar"></div>
+        <div class="webloog-skeleton-lines">
+          <div class="webloog-skeleton-line"></div>
+          <div class="webloog-skeleton-line short"></div>
+          <div class="webloog-skeleton-line"></div>
+        </div>
+      </div>
+    `;
+  }
+  return out;
+}
+webloogComments.innerHTML = createSkeletons(comments);
+function replaceSkeletonWithComment(html) {
+  const firstSkeleton = webloogComments.querySelector(".webloog-skeleton");
+  if (firstSkeleton) {
+    firstSkeleton.outerHTML = html;
+  }
+}
 let foundComment = false;
 async function getComment(postId, page = 1) {
   try {
@@ -283,8 +342,7 @@ async function getComment(postId, page = 1) {
             </div>
           </div>
         `;
-        webloogComments.insertAdjacentHTML("beforeend", commentTemplate);
-        webloogComments.querySelector(".webloog-loading")?.remove();
+        replaceSkeletonWithComment(commentTemplate);
         comments -= 1;
       }
     }
